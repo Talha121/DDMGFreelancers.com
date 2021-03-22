@@ -1,0 +1,292 @@
+<app-chatSellerNav *ngIf="nav!=null;else buyernave"></app-chatSellerNav>
+<ng-template #buyernave>
+<app-chattNav></app-chattNav>
+</ng-template>
+<div style="margin-top: 4% !important;">
+
+</div>
+
+<div class="container">
+  <div class="dashboard-headline">
+    <h3>Messages</h3>
+
+    <!-- Breadcrumbs -->
+    
+  </div>
+
+    <div class="messages-container margin-top-0">
+
+      <div class="messages-container-inner">
+
+        <!-- Messages -->
+        <div class="messages-inbox">
+          <div class="messages-headline">
+            <div class="input-with-icon">
+                <input id="autocomplete-input" type="text" placeholder="Search">
+              <i class="icon-material-outline-search"></i>
+            </div>
+          </div>
+
+          <ul>
+            <li *ngFor="let item of chat">
+              <a (click)="ViewMessage(item.chatId)">
+                <div class="message-avatar"><i class="status-icon status-online"></i><img src="assets/images/user-avatar-small-03.jpg" alt=""></div>
+
+                <div class="message-by" *ngIf="userid==item.
+                recieverId;else chathead">
+                  <div class="message-by-headline">
+                    <h5>{{item.senderDetails.username}}</h5>
+                    <span>4 hours ago</span>
+                  </div>
+                  <p>{{item.messages[0].message}}</p>
+                </div>
+                <ng-template #chathead>
+                  <div class="message-by">
+                    <div class="message-by-headline">
+                      <h5>{{item.recieverDetails.username}}</h5>
+                      <span>4 hours ago</span>
+                    </div>
+                    <p>{{item.messages[0].message}}</p>
+                  </div>
+                </ng-template>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+        <!-- Messages / End -->
+
+        <!-- Message Content -->
+        <div class="message-content">
+
+          <div class="messages-headline" *ngIf="recievername!=null;else rname ">
+            <h4>{{recievername}}</h4>
+          
+          </div>
+          <ng-template #rname>
+            <div class="messages-headline" >
+              <h4>Name</h4>
+            
+            </div>
+          </ng-template>
+
+          <!-- Message Content Inner -->
+          <div class="message-content-inner">
+      <div class="example-item">
+<!-- Time Sign -->
+
+<div *ngIf="message!=null && checked==true;else nomessage">
+  <div class="message-time-sign">
+    <span>28 June, 2019</span>
+  </div>
+  <div *ngFor="let item of message" tabindex="1" #commentDiv class="comment-item">
+    <div class="message-bubble me" *ngIf="item.senderId==userid;else sender">
+      <div class="message-bubble-inner">
+        <div class="message-avatar"><img src="assets/images/user-avatar-small-01.jpg" alt=""></div>
+        <div class="row" *ngIf="item.messageType=='Offer';else simplemessage1">
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-9">
+            <div class="message-text">
+              <div class="row" style="border: solid 1px ;">
+                <div class="col-md-10" >
+                  <p style="padding: 5px;font-weight: bold;">I will develop native android, ios and web app or clone any app</p>
+                </div>
+                <div class="col-md-2">
+                  <p style="padding: 5px;font-weight: bold;"> Rs I500</p>
+              </div>
+              </div>
+              <div class="row" style="border: solid 1px ;">
+            
+                <div class="col-md-12" *ngIf="userid==item.
+                recieverId">
+                  <div style="float: right;padding: 10px;">
+                    <button class="btn btn-outline">No Thanks </button>
+                    <button class="btn btn-success">COUNTINUE</button>
+                  </div>
+              
+              </div>
+              </div>
+            </div>
+          </div>
+                  
+         
+                  
+    </div>
+  
+    <ng-template #simplemessage1>
+      <div class="message-text"><p>{{item.message}}</p></div>
+    </ng-template>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <ng-template #sender>
+      <div class="message-bubble">
+        <div class="message-bubble-inner">
+          <div class="message-avatar"><img src="assets/images/user-avatar-small-02.jpg" alt=""></div>
+          
+          <div class="row" *ngIf="item.messageType=='Offer';else simplemessage">
+
+                <div class="col-md-9">
+                  <div class="message-text">
+                    <div class="row" style="border: solid 1px ;">
+                      <div class="col-md-10" >
+                        <p style="padding: 5px;font-weight: bold;">I will develop native android, ios and web app or clone any app</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p style="padding: 5px;font-weight: bold;"> Rs I500</p>
+                    </div>
+                    </div>
+                    <div class="row" style="border: solid 1px ;">
+                  
+                      <div class="col-md-12">
+                        <div style="float: right;padding: 10px;">
+                          <button class="btn btn-outline">No Thanks </button>
+                          <button class="btn btn-success">COUNTINUE</button>
+                        </div>
+                    
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                        
+                <div class="col-md-3">
+
+                </div>
+                        
+          </div>
+        
+          <ng-template #simplemessage>
+            <div class="message-text"><p>{{item.message}}</p></div>
+          </ng-template>
+        
+        </div>
+        <div class="clearfix"></div>
+      </div>
+     
+     
+    </ng-template>
+  </div>
+
+</div>
+
+<ng-template #nomessage>
+  <h1>
+    No Message
+  </h1>
+</ng-template>
+      </div>
+              
+                      
+           
+
+             
+
+          </div>
+
+          <!-- Message Content Inner / End -->
+     
+          <!-- Reply Area -->
+          <div class="message-reply" *ngIf="checked">
+            <textarea cols="1" rows="1" placeholder="Your Message" #messagebox></textarea>
+            <button class="button ripple-effect" (click)="OfferModal(content)" >Create Offer</button>
+            <button class="button ripple-effect" (click)="SendMessage(message[0].chatId)" >Send</button>
+          </div>
+
+        </div>
+        <!-- Message Content -->
+
+      </div>
+  </div>
+</div>
+
+
+
+
+
+    
+   
+<ng-template #content let-modal >
+<div class="modal-header">
+<h2>
+  Create Your Offer
+
+</h2>
+</div>
+
+	<div class="modal-body">
+<div  class="container" *ngFor="let item of gig">
+  <div  class="row">
+ 
+ <div class="col-md-6">
+   <div class="row">
+       <div class="col-md-12">
+        <input type="radio" (change)="selectid(item.gigdata.gigId)" />
+        <div class="col-md-12">
+          <img [src]="imagebaseurl + item.gigimages[0]" />
+            </div>
+       </div>
+     
+   </div>
+
+  <div class="clearfix"></div>
+</div>
+<div class="col-md-6">
+  <br>
+  <br>
+  <h3>{{item.gigdata.title}}</h3>
+ </div>
+  </div>
+<br>
+<hr>
+<br>
+
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+  <textarea  [(ngModel)]="Desciption"  style="font-weight:bold;font-size: 20px;" class="form-control"  placeholder="Describe your Offer"></textarea>
+</div>
+</div>
+</div>
+<div class="container" style="padding: 38px;">
+  <div class="row"  style="background-color: #f5f5f5;padding: 29px;">
+    <div class="col-md-4">
+      <label>Delivery </label>
+      <select class="form-control" style="width:230px;height: 44px;" [(ngModel)]="DeliveryTime"  >
+        <option>Delivery</option>
+        <option value="1">1 Day Delivery </option>
+        <option  value="2">2 Day Delivery </option>
+        <option  value="3">3 Day Delivery </option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Revisions (optional)
+      </label>
+      <select class="form-control" style="width:230px;height: 44px;"  [(ngModel)]="revesion">
+        <option>Select</option>
+        <option value="0">0 </option>
+        <option value="1">1 </option>
+        <option value="2">2  </option>
+        <option value="3">3  </option>
+  </select>
+    </div>
+    <div class="col-md-4">
+      <label>Price</label>
+    <input type="number"  [(ngModel)]="price"   class="form-control">
+    </div>
+   
+   
+  </div>
+  <br>
+<button class="button button-sliding-icon ripple-effect" style="text-align: center;width:270px;float: right;" (click)="createoffer()">CREATE OFFER</button>
+</div>
+
+	</div>
+
+
+	
+	</ng-template>

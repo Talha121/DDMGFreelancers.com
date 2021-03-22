@@ -1,0 +1,269 @@
+<div  class="container" style="margin-top: 100px;background-color: #fafafa;">
+
+  <div class="row">
+
+       <div class="col-md-8">
+        <br>
+            <h3>Gigs</h3>
+       </div>
+       <div class="col-md-2">
+         <br>
+        <button class="btn btn-success" style="font-size: 14px;
+        padding:8%;
+        font-weight: bold;float:right" [routerLink]="['/seller/newgig']" >CREATE  NEW GIG</button>
+      </div>
+       <div class="col-md-2">
+        <br>
+        
+         <input type="text" placeholder="search Requests" class="form-control">
+      </div>
+  </div>
+ 
+     <mat-tab-group>
+       <mat-tab label="Active">
+   
+           <table class="table table-striped ">
+             <thead>
+               <tr>
+                 <th colspan="4">Active Gigs</th>
+               
+                 <th>
+                 
+              
+                        <select class="form-control">
+                          <option selected>Last 30 Days</option>
+                          <option >Last 14 Days</option>
+                          <option >Last 7 Days</option>
+                          <option >Last 3 Days</option>
+                        </select>
+              
+             
+              
+                 </th>  
+
+              
+               </tr>
+               <tr>
+                 <th>GIG</th>
+                 <th>	IMPRESSIONS</th>
+                 <th>CLICKS</th>
+                 <th>ORDERS</th>
+                 <th>CANCELLATIONS</th>
+        
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let item of gig">
+              
+            
+                <td><p> <img [src]="imagebaseurl + item.gigimages[0]" style="border-radius: 50%; height: 50px;width: 50px;">{{item.gigdata.title}}
+               </p></td>
+               <td>{{item.impressions}}</td>
+                <td>{{item.gigclickcount}}</td>
+                <td>0</td>
+                <td>0%</td>
+               </tr>
+             
+            
+             </tbody>
+           </table>
+
+  
+  
+   
+   
+       </mat-tab>
+       <mat-tab label="PENDING APPROVAL">
+       <table class="table table-striped ">
+        <thead>
+          <tr>
+            <th colspan="4">GIGS PENDING APPROVAL</th>
+          
+            <th>
+            
+         
+                   <select class="form-control">
+                     <option selected>Last 30 Days</option>
+                     <option >Last 14 Days</option>
+                     <option >Last 7 Days</option>
+                     <option >Last 3 Days</option>
+                   </select>
+         
+        
+         
+            </th>  
+
+         
+          </tr>
+          <tr>
+            <th>GIG</th>
+            <th>	IMPRESSIONS</th>
+            <th>CLICKS</th>
+            <th>ORDERS</th>
+            <th>CANCELLATIONS</th>
+   
+          </tr>
+        </thead>
+        <tbody>
+          
+         
+       <p style="margin-left: 20;">No Pending Approvals</p>
+           <!-- <td><p> <img src="assets/images/user-avatar-big-01.jpg" style="border-radius: 50%; height: 50px;width: 50px;">I will do software quality assurance for your website or any sort of program
+          </p></td>
+          <td>4</td>
+           <td>10</td>
+           <td>0</td>
+           <td>12%</td> -->
+       
+         
+       
+        </tbody>
+      </table>   
+      
+      </mat-tab>
+      <mat-tab label="REQUIRES MODIFICATION
+      ">
+      <table class="table table-striped ">
+       <thead>
+         <tr>
+           <th colspan="4">
+            GIGS THAT REQUIRE MODIFICATIONS</th>
+         
+           <th>
+           
+        
+                  <select class="form-control">
+                    <option selected>Last 30 Days</option>
+                    <option >Last 14 Days</option>
+                    <option >Last 7 Days</option>
+                    <option >Last 3 Days</option>
+                  </select>
+        
+       
+        
+           </th>  
+
+        
+         </tr>
+         <tr>
+           <th>GIG</th>
+           <th>	IMPRESSIONS</th>
+           <th>CLICKS</th>
+           <th>ORDERS</th>
+           <th>CANCELLATIONS</th>
+  
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+        
+      
+          <p>No Modifications Required</p>
+         </tr>
+        
+      
+       </tbody>
+     </table>   
+     
+     </mat-tab>
+   
+    <mat-tab label="DRAFT
+    ">
+     <table class="table table-striped ">
+      <thead>
+        <tr>
+          <th colspan="4">
+           
+DENIED GIGS</th>
+        
+          <th>
+          
+       
+                 <select class="form-control">
+                   <option selected>Last 30 Days</option>
+                   <option >Last 14 Days</option>
+                   <option >Last 7 Days</option>
+                   <option >Last 3 Days</option>
+                 </select>
+       
+      
+       
+          </th>  
+
+       
+        </tr>
+        <tr>
+          <th>GIG</th>
+          <th>	IMPRESSIONS</th>
+          <th>CLICKS</th>
+          <th>ORDERS</th>
+          <th>CANCELLATIONS</th>
+ 
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+       
+           
+          <p>No Cancelled Gigs</p>
+         <!-- <td><p> <img src="assets/images/user-avatar-big-01.jpg" style="border-radius: 50%; height: 50px;width: 50px;">I will do software quality assurance for your website or any sort of program
+        </p></td>
+        <td>4</td>
+         <td>10</td>
+         <td>0</td>
+         <td>12%</td> -->
+        </tr>
+       
+      </tbody>
+    </table>   
+    
+    </mat-tab>
+    <mat-tab label="PAUSED
+    ">
+     <table class="table table-striped ">
+      <thead>
+        <tr>
+          <th colspan="4">
+           
+            DENIED GIGS</th>
+        
+          <th>
+          
+       
+                 <select class="form-control">
+                   <option selected>Last 30 Days</option>
+                   <option >Last 14 Days</option>
+                   <option >Last 7 Days</option>
+                   <option >Last 3 Days</option>
+                 </select>
+       
+      
+       
+          </th>  
+
+       
+        </tr>
+        <tr>
+          <th>GIG</th>
+          <th>	IMPRESSIONS</th>
+          <th>CLICKS</th>
+          <th>ORDERS</th>
+          <th>CANCELLATIONS</th>
+ 
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+       
+     
+               
+          <p>No Denied Gigs</p>
+      </tr>
+      </tbody>
+    </table>   
+    
+    </mat-tab>
+     </mat-tab-group>
+ 
+  
+</div>

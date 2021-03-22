@@ -1,0 +1,340 @@
+<!-- Header Container
+================================================== -->
+
+<header id="header-container" class="fullwidth"  style="position: fixed;">
+
+	<!-- Header -->
+	<div id="header">
+		<div class="container">
+			
+			<!-- Left Side Content -->
+			<div class="left-side">
+				
+				<!-- Logo -->
+				<div id="logo">
+					<a href="#"><img src="assets/images/logo.png" style="height: 100px;"  data-sticky-logo="images/logo.png" data-transparent-logo="images/logo2.png" alt=""></a>
+				</div>
+
+				<!-- Main Navigation -->
+				<nav id="navigation">
+					<ul id="responsive">
+					
+							<li *ngIf="authenticated!=null" >
+								<div class="">
+								
+									<input id="intro-keywords" type="text" placeholder="Title or Keywords"[(ngModel)]="searchgig">
+								
+								</div>
+			
+								<!-- Button -->
+								
+							</li>
+							<li *ngIf="authenticated!=null">
+								<div class="intro-search-button">
+									<button class="button ripple-effect" style="    margin-top: -9%;
+									margin-left: -18%;" (click)="search()">Search</button>
+								</div>
+							</li>
+							<li *ngIf="authenticated!=null"><a href="" [routerLink]="['/inbox']" >Messages</a>
+						
+							</li>
+							<li *ngIf="authenticated!=null"><a href="" [routerLink]="['/home']" >Orders</a>
+						
+							</li>
+					
+
+						<li><a href="#" class="current">Explore</a>
+						
+						</li>
+
+						
+
+						
+
+					
+
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+				<!-- Main Navigation / End -->
+				
+			</div>
+		
+			<!-- Left Side Content / End -->
+			<div class="right-side" *ngIf="authenticated==null;else authuser">
+
+			
+				<div class="header-widget pointer">
+					<a #loginclick  (click)="loginsignupmodal(content)" class="popup-with-zoom-anim log-in-button "><i class="icon-feather-log-in "></i> <span style="font-weight: bold;font-style: 20px;">Log In / Join</span></a>
+				</div>
+
+
+
+				<!-- Mobile Navigation Button -->
+				<span class="mmenu-trigger">
+					<button class="hamburger hamburger--collapse" type="button">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</button>
+				</span>
+
+			</div>
+
+			<ng-template #authuser>
+<!-- Right Side Content / End -->
+<div class="right-side">
+
+	<!--  User Notifications -->
+	<div class="header-widget hide-on-mobile">
+		
+		
+				<!-- Right Side Content / End -->
+
+		<!-- Messages -->
+		
+		<div class="header-notifications active" (click)="showmails()" *ngIf="mails">
+			<div class="header-notifications-trigger">
+				<a><i class="icon-feather-mail"></i><span>{{unreadmessagecount}}</span></a>
+			</div>
+
+			<!-- Dropdown -->
+			<div class="header-notifications-dropdown">
+
+				<div class="header-notifications-headline">
+					<h4>Messages</h4>
+					<button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
+						<i class="icon-feather-check-square"></i>
+					</button>
+				</div>
+
+				<div class="header-notifications-content">
+					<div class="header-notifications-scroll" data-simplebar>
+						<ul>
+							<!-- Notification -->
+							<li class="notifications-not-read" *ngFor="let item of chat">
+								<a [routerLink]="['/inbox']" *ngIf="userid==item.
+								recieverId;else chathead">
+									<span class="notification-avatar status-online"><img src="assets/images/user-avatar-small-03.jpg" alt=""></span>
+									<div class="notification-text">
+										<strong>{{item.senderDetails.username}}</strong>
+										<br>
+										<p class="notification-msg-text">{{item.messages[0].message}}</p>
+										<br>
+										<span class="color">4 hours ago</span>
+									</div>
+								</a>
+								<ng-template #chathead>
+									<a  [routerLink]="['/inbox']" >
+										<span class="notification-avatar status-online"><img src="assets/images/user-avatar-small-03.jpg" alt=""></span>
+										<div class="notification-text">
+											<strong>{{item.recieverDetails.username}}</strong>
+											<br>
+											<p class="notification-msg-text">{{item.messages[0].message}}</p>
+											<br>
+											<span class="color">4 hours ago</span>
+										</div>
+									</a>
+								</ng-template>
+
+							
+							</li>
+
+							<!-- Notification -->
+						
+
+							<!-- Notification -->
+						
+						</ul>
+					</div>
+				</div>
+
+				<a [routerLink] = "['/inbox']" class="header-notifications-button ripple-effect button-sliding-icon">View All Messages<i class="icon-material-outline-arrow-right-alt"></i></a>
+			</div>
+		</div>
+		<div class="header-notifications" (click)="showmails()" *ngIf="!mails">
+			<div class="header-notifications-trigger">
+				<a ><i class="icon-feather-mail"></i><span>{{unreadmessagecount}}</span></a>
+			</div>
+
+			
+		</div>
+
+	</div>
+	<!--  User Notifications / End -->
+
+	<!-- User Menu -->
+	<div class="header-widget">
+
+		<!-- Messages -->
+	
+		<div class="header-notifications user-menu active" (click)="Userdropdown()"  *ngIf="userdropdown">
+			<div class="header-notifications-trigger">
+				<a ><div class="user-avatar status-online"><img src="assets/images/user-avatar-small-01.jpg" alt=""></div></a>
+			</div>
+
+			<!-- Dropdown -->
+			<div class="header-notifications-dropdown">
+
+				<!-- User Status -->
+				<div class="user-status">
+
+					<!-- User Name / Avatar -->
+					<div class="user-details">
+						<div class="user-avatar status-online"><img src="assets/images/user-avatar-small-01.jpg" alt=""></div>
+						<div class="user-name">
+							{{name}} <span>Freelancer</span>
+						</div>
+					</div>
+					
+					<!-- User Status Switcher -->
+					<div class="status-switch" id="snackbar-user-status">
+						<label class="user-online current-status">Online</label>
+						<label class="user-invisible">Invisible</label>
+						<!-- Status Indicator -->
+						<span class="status-indicator" aria-hidden="true"></span>
+					</div>	
+			</div>
+			
+			<ul class="user-menu-small-nav">
+				<li *ngIf="sellerAcivated==false;else dashboard"><a [routerLink] = "['/home/force_buying_nav/becomeseller']"><i class="icon-material-outline-dashboard" ></i> Become a Seller</a></li>
+				<ng-template #dashboard>
+					<li><a [routerLink] = "['/seller/dashboard']"><i class="icon-material-outline-dashboard" ></i> Seller Dashboard</a></li>
+				</ng-template>
+				<!-- <li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li> -->
+				<li class="pointer" (click)="logout()" ><a ><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+			</ul>
+
+			</div>
+		</div>
+		
+		<div class="header-notifications user-menu"  (click)="Userdropdown()"  *ngIf="!userdropdown">
+			<div class="header-notifications-trigger">
+				<a ><div class="user-avatar status-online"><img src="assets/images/user-avatar-small-01.jpg" alt=""></div></a>
+			</div>
+
+			
+		</div>
+	</div>
+	<!-- User Menu / End -->
+
+	<!-- Mobile Navigation Button -->
+	<span class="mmenu-trigger">
+		<button class="hamburger hamburger--collapse" type="button">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</button>
+	</span>
+
+</div>
+<!-- Right Side Content / End -->
+			</ng-template>
+			
+
+		</div>
+	</div>
+	<!-- Header / End -->
+
+</header>
+<div class="clearfix"></div>
+<!-- Header Container / End -->
+<ng-template #content let-modal >
+
+	<!-- <div class="modal-header">
+	<ul class="popup-tabs-nav">
+	
+	<li><a (click)="showloginpage()" >Log In</a></li>
+	<li><a (click)="Showregisterpage()">Register</a></li>
+	</ul>
+	<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+	<span aria-hidden="true">&times;</span>
+	</button>
+	</div> -->
+	<div class="modal-body">
+	<div class="sign-in-form">
+	
+	
+	
+	<div class="popup-tabs-container">
+	
+	<!-- Login -->
+	<div class="popup-tab-content" id="login" *ngIf="loginpage">
+	
+	<!-- Welcome Text -->
+	<div class="welcome-text">
+	<h3>Sign In to DDMG Freelancer!</h3>
+	<span>have an account? <a (click)="Showregisterpage()" class="register-tab">Sign In!</a></span>
+	</div>
+	
+	<!-- Form -->
+	<form [formGroup]="LoginForm">
+	<div class="input-with-icon-left">
+	<i class="icon-material-baseline-mail-outline"></i>
+	<input type="text" style="font-weight: bold;color: black !important;" class="input-text with-border" formControlName="Email" placeholder="Enter Username Or Email Address" required/>
+	</div>
+	
+	<div class="input-with-icon-left">
+	<i class="icon-material-outline-lock"></i>
+	<input type="password" style="font-weight: bold;color: black !important;" class="input-text with-border" class="input-text with-border" formControlName="Password" placeholder="Password" required/>
+	</div>
+	<!-- <a href="#" class="forgot-password">Forgot Password?</a> -->
+	</form>
+	
+	<!-- Button -->
+	<button class="button full-width button-sliding-icon ripple-effect" (click)="Login()">Sign In <i class="icon-material-outline-arrow-right-alt"></i></button>
+	
+	
+	
+	</div>
+	
+	<!-- Register -->
+	<div class="popup-tab-content" id="register" *ngIf="registepager">
+	
+	<!-- Welcome Text -->
+	<div class="welcome-text">
+	<h3>Let's create your account!</h3>
+	</div>
+	
+	
+	<!-- Form -->
+	<form [formGroup]="Registrationform">
+	
+	<div class="input-with-icon-left">
+	<i class="icon-material-outline-lock"></i>
+	<input type="text" class="input-text with-border" formControlName="User_Name" placeholder="Username" required/>
+	</div>
+	<div class="input-with-icon-left">
+	<i class="icon-material-baseline-mail-outline"></i>
+	<input type="text" class="input-text with-border" style="font-weight: bold;color: black !important;" formControlName="Email"placeholder="Email Address" required/>
+	</div>
+	
+	<div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+	<i class="icon-material-outline-lock"></i>
+	<input type="password" class="input-text with-border" style="font-weight: bold;color: black !important;" formControlName="Password" placeholder="Password" required/>
+	</div>
+	
+	</form>
+	
+	<!-- Button -->
+	<button class="margin-top-10 button full-width button-sliding-icon ripple-effect" (click)="Register()">Register <i class="icon-material-outline-arrow-right-alt"></i></button>
+	
+	
+	
+	</div>
+	
+	</div>
+	</div>
+	</div>
+	<!-- <div class="modal-footer">
+	<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+	</div> -->
+	<div class="modal-footer" *ngIf="loginpage">
+	<p>Not a member yet? <span style="color: blue;font-size: 20px;font-weight: bold;" (click)="Showregisterpage()">Join now</span></p>
+	
+	</div>
+	<div class="modal-footer" *ngIf="registepager">
+	<p>Already a member? <span style="color: blue;font-size: 20px;font-weight: bold;" (click)="showloginpage()">Sign In</span></p>
+	</div>
+	</ng-template>
+<!-- Sign In Popup / End -->

@@ -1,0 +1,197 @@
+<div class="" *ngIf="found==true;else notfound">
+
+
+   <div class="" data-simplebar >
+   
+    <div class="full-page-content-inner" style="background-color:white  !important">
+      <div class="row">
+        <div class="col-md-1 col-lg-1 col-xl-1 col-sm-1 col-xs-1">
+     
+        </div>
+        <div class="col-md-10 col-lg-10 col-xl-10 col-sm-10 col-xs-10" >
+          <div class="row">
+               <div class="col-md-4 col-lg-4 col-xl-4 col-sm-4 col-xs-4">
+                   <div style="background-color: #f7f7f7;height: 300px;border: 10px;">
+                  <div style="padding-top: 10px;">
+                
+                 <h1 style="padding-top: 30px;font-weight: bold;text-align: center;">Results</h1>
+                  </div>
+                 <p style="padding: 10%;font-size:20px;font-weight:bold;text-align: center;">Get offers from sellers for your project</p>
+                   </div>
+               </div>
+               <div class="col-md-8 col-lg-8 col-xl-8 col-sm-8 col-xs-8">
+                 <ngb-carousel
+                 [showNavigationArrows]="true" 
+                 [showNavigationIndicators]="true"
+                 interval="10000"
+                 [keyboard]="true"
+                 [pauseOnHover]="true"
+                 [wrap]="true"
+                 [activeId]="'slideTwo'"
+                 >
+                   <ng-template ngbSlide id="slideOne">
+                     <div class="picsum-img-wrapper">
+                       <img  src="assets/images/slider1.jpg" style="height: 300px !important;width: 800px !important; ">
+                     </div>
+                     <div class="carousel-caption">
+                       <h1 style="color: white;">Grow your influencer channels</h1>
+                       <p>Handpicked services to help you maximize your earnings.</p>
+                     </div>
+                   </ng-template>
+                   <ng-template ngbSlide id="slideTwo">
+                     <div class="picsum-img-wrapper">
+                       <img src="assets/images/slider2.jpg"style="height: 300px !important;width: 800px !important; ">
+                     </div>
+                     <div class="carousel-caption">
+                       <h1 style="color: white;">Build your E-Commerce business</h1>
+                       <p>A step-by-step guide to creating, launching, and growing your online business..</p>
+                     </div>
+                   </ng-template>
+                   <ng-template ngbSlide id="slideThree">
+                     <div class="picsum-img-wrapper">
+                       <img  src="assets/images/slider3.jpg" style="height: 300px !important;width: 800px !important; ">
+                     </div>
+                     <div class="carousel-caption">
+                       <h1 style="color: white;">Less moving. More followers.</h1>
+                       <p>Grow your YouTube without leaving home.</p>
+                     </div>
+                   </ng-template>
+                 </ngb-carousel>
+               </div>
+          </div>
+       
+       </div>
+       <div class="col-md-1 col-lg-1 col-xl-1 col-sm-1 col-xs-1">
+     
+       </div>
+       </div>
+       
+       <br>
+    </div>
+    
+    <div class="full-page-content-inner" style="background-color:#f7f7f7  !important">
+         
+         <!-- Freelancers List Container -->
+         <div class="freelancers-container freelancers-grid-layout">
+            <!--Freelancer -->
+            <div class="row">
+               <div class="col-md-3" *ngFor="let item of getgig| paginate:{itemsPerPage:20,currentPage:p}; let i=index;">
+                <div>
+           
+                   <div [ngStyle]="{background: 'url('+imagebaseurl + item.gigimages[0] + ')'}" style=" background-image: url('assets/images/featured-city-02.jpg'); background-size:100%;height: 248px;">
+                     <div class="freelancer-overview-inner">
+                       
+                     
+         
+                       
+                     </div>
+                   </div>
+                   <!-- <ngb-carousel>
+                     <ng-template ngbSlide>
+                   
+                        Details
+                   
+                      
+                
+              
+                      
+                     </ng-template>
+                   
+                   </ngb-carousel> 
+        -->
+       
+       
+       
+       
+                   <!-- Details -->
+                   <div class="freelancer-details">
+                     
+                     <div class="freelancer-details-list">
+                       <div class="row">
+                                               <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-xs-3">
+                                                        <img [src]="imagebaseurl1+item.sellerimage" style=" border-radius: 50%;    height: 43px;">
+                           </div>
+                           <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6 col-xs-6" >
+                                                   <span style="margin-left: -7%;">{{item.sellername}}</span>    
+                             <!-- <span style="float: left;color: lightgray;font-size: 14px;margin-top: -9px;">Seler	Level</span>     -->
+                              
+         
+         
+                           </div>
+                       </div>
+                       <div class="row">
+                         
+                         <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12" >
+                            
+                         <p>{{item.gigdata.title | slice:0:40}}...</p>
+         
+                         </div>
+                         <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12" >
+                            
+                           <div class="freelancer-rating">
+                             <div class="star-rating" data-rating="5.0"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>
+                           </div>
+         
+                         </div>
+                     </div>
+                   
+                       
+                     </div>
+                     <br>
+                     <a (click)="getgigdetails(item.gigdata.gigId)" class="button button-sliding-icon ripple-effect" tabindex="0" style="width: 294px;">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
+                   </div>
+                 
+                 </div>
+               </div>
+ 
+            </div>
+             
+         
+         
+         <div class="row">
+ <div class="col-md-4 col-lg-4 col-xl-4 col-sm-4 col-xs-4">
+ 
+ </div>
+         </div>
+         <div>
+           
+     
+            </div>
+         </div>
+         <!-- Details -->
+         <!-- Overview -->
+         <!-- Freelancers Container / End -->
+         <!-- Pagination -->
+         <div class="clearfix"></div>
+         <div class="pagination-container margin-top-20 margin-bottom-20" style="margin-left:45% ;">
+          <pagination-controls (pageChange)="p=$event"></pagination-controls>
+         </div>
+         <div class="clearfix"></div>
+         <!-- Pagination / End -->
+      </div>
+     
+   </div>
+   <!-- Full Page Content / End -->
+ 
+ </div>
+ 
+
+ <!-- Container -->
+ <ng-template #notfound>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-12">
+  
+        <section id="not-found" class="center margin-top-50 margin-bottom-25">
+          <h2>404 <i class="icon-line-awesome-question-circle"></i></h2>
+          <p>We're sorry, but the Result you were looking for doesn't exist</p>
+        </section>
+  
+       
+  
+      </div>
+    </div>
+  
+  </div>
+ </ng-template>

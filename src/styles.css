@@ -1,0 +1,42 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+.basic-container {
+    padding: 30px;
+  }
+  
+  .version-info {
+    font-size: 8pt;
+    float: right;
+  }
+  
+  .basic-container .mat-step-header .mat-step-icon-selected {
+    background-color: #6cb73a;
+    color: #fff;
+  }
+  
+  
+   .mat-step-header .mat-step-icon {
+      background-color: rgba(167, 35, 35, 0.54);
+      color: #fff;
+  }
+  .checked {
+    color: orange;
+  }
+  
+/* 
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a41e8, 
+  } */

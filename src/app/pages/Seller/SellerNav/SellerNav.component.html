@@ -1,0 +1,207 @@
+<!-- Header Container
+================================================== -->
+
+<header id="header-container" class="fullwidth"  style="position: fixed;">
+
+	<!-- Header -->
+	<div id="header">
+		<div class="container">
+			
+			<!-- Left Side Content -->
+			<div class="left-side">
+				
+				<!-- Logo -->
+				<div id="logo">
+					<a href="#"><img src="assets/images/logo.png" style="height: 100px;"  data-sticky-logo="images/logo.png" data-transparent-logo="images/logo2.png" alt=""></a>
+				</div>
+
+				<!-- Main Navigation -->
+				<nav id="navigation">
+					<ul id="responsive">
+
+						<li ><a href="" [routerLink]="['/inbox']" >Messages</a>
+						
+						</li>
+						<li><a href="" [routerLink]="['/seller/dashboard']" >Orders</a>
+					
+						</li>
+						<li><a href="" [routerLink]="['/seller/mygigs']" >Gigs</a>
+					
+						</li>
+						<!-- <li><a href="" [routerLink]="['/inbox']" >Buyer Requests</a>
+					
+						</li> -->
+					
+
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+				<!-- Main Navigation / End -->
+				
+			</div>
+		
+			
+		
+<!-- Right Side Content / End -->
+
+	<!-- Right Side Content / End -->
+	<div class="right-side">
+	
+		<!--  User Notifications -->
+		<div class="header-widget hide-on-mobile">
+			
+			
+					<!-- Right Side Content / End -->
+	
+			<!-- Messages -->
+			
+			<div class="header-notifications active" (click)="showmails()" *ngIf="mails">
+				<div class="header-notifications-trigger">
+					<a><i class="icon-feather-mail"></i><span>{{unreadmessagecount}}</span></a>
+				</div>
+	
+				<!-- Dropdown -->
+				<div class="header-notifications-dropdown">
+	
+					<div class="header-notifications-headline">
+						<h4>Messages</h4>
+						<button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
+							<i class="icon-feather-check-square"></i>
+						</button>
+					</div>
+	
+					<div class="header-notifications-content">
+						<div class="header-notifications-scroll" data-simplebar>
+							<ul>
+								<!-- Notification -->
+								<li class="notifications-not-read" *ngFor="let item of chat">
+									<a [routerLink]="['/inbox']" *ngIf="userid==item.
+									recieverId;else chathead">
+										<span class="notification-avatar status-online"><img src="assets/images/user-avatar-small-03.jpg" alt=""></span>
+										<div class="notification-text">
+											<strong>{{item.senderDetails.username}}</strong>
+											<br>
+											<p class="notification-msg-text">{{item.messages[0].message}}</p>
+											<br>
+											<span class="color">4 hours ago</span>
+										</div>
+									</a>
+									<ng-template #chathead>
+										<a  [routerLink]="['/inbox']" >
+											<span class="notification-avatar status-online"><img src="assets/images/user-avatar-small-03.jpg" alt=""></span>
+											<div class="notification-text">
+												<strong>{{item.recieverDetails.username}}</strong>
+												<br>
+												<p class="notification-msg-text">{{item.messages[0].message}}</p>
+												<br>
+												<span class="color">4 hours ago</span>
+											</div>
+										</a>
+									</ng-template>
+	
+								
+								</li>
+	
+								<!-- Notification -->
+							
+	
+								<!-- Notification -->
+							
+							</ul>
+						</div>
+					</div>
+	
+					<a [routerLink] = "['/inbox']" class="header-notifications-button ripple-effect button-sliding-icon">View All Messages<i class="icon-material-outline-arrow-right-alt"></i></a>
+				</div>
+			</div>
+			<div class="header-notifications" (click)="showmails()" *ngIf="!mails">
+				<div class="header-notifications-trigger">
+					<a ><i class="icon-feather-mail"></i><span>{{unreadmessagecount}}</span></a>
+				</div>
+	
+				
+			</div>
+	
+		</div>
+		<!--  User Notifications / End -->
+	
+		<!-- User Menu -->
+		<div class="header-widget">
+	
+			<!-- Messages -->
+		
+			<div class="header-notifications user-menu active" (click)="Userdropdown()"  *ngIf="userdropdown">
+				<div class="header-notifications-trigger">
+					<a ><div class="user-avatar status-online"><img src="assets/images/user-avatar-small-01.jpg" alt=""></div></a>
+				</div>
+	
+				<!-- Dropdown -->
+				<div class="header-notifications-dropdown">
+	
+					<!-- User Status -->
+					<div class="user-status">
+	
+						<!-- User Name / Avatar -->
+						<div class="user-details">
+							<div class="user-avatar status-online"><img src="assets/images/user-avatar-small-01.jpg" alt=""></div>
+							<div class="user-name">
+								{{name}} <span>Freelancer</span>
+							</div>
+						</div>
+						
+						<!-- User Status Switcher -->
+						<div class="status-switch" id="snackbar-user-status">
+							<label class="user-online current-status">Online</label>
+							<label class="user-invisible">Invisible</label>
+							<!-- Status Indicator -->
+							<span class="status-indicator" aria-hidden="true"></span>
+						</div>	
+				</div>
+				
+				<ul class="user-menu-small-nav">
+					<li *ngIf="sellerAcivated==false;else dashboard"><a [routerLink] = "['/home/force_buying_nav/becomeseller']"><i class="icon-material-outline-dashboard" ></i> Become a Seller</a></li>
+					<ng-template #dashboard>
+						<li><a [routerLink] = "['/seller/dashboard']"><i class="icon-material-outline-dashboard" ></i> Seller Dashboard</a></li>
+					</ng-template>
+					<!-- <li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li> -->
+					<li class="pointer" (click)="logout()" ><a ><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+				</ul>
+	
+				</div>
+			</div>
+			
+			<div class="header-notifications user-menu"  (click)="Userdropdown()"  *ngIf="!userdropdown">
+				<div class="header-notifications-trigger">
+					<a ><div class="user-avatar status-online"><img src="assets/images/user-avatar-small-01.jpg" alt=""></div></a>
+				</div>
+	
+				
+			</div>
+		</div>
+		<!-- User Menu / End -->
+	
+		<!-- Mobile Navigation Button -->
+		<span class="mmenu-trigger">
+			<button class="hamburger hamburger--collapse" type="button">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</button>
+		</span>
+	
+	</div>
+	<!-- Right Side Content / End -->
+			
+<!-- Right Side Content / End -->
+		
+			
+
+		</div>
+	</div>
+	<!-- Header / End -->
+
+</header>
+<div class="clearfix"></div>
+<!-- Header Container / End -->
+
+<!-- Sign In Popup / End -->

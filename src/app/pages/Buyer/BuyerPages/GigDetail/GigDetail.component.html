@@ -1,0 +1,236 @@
+<!-- Titlebar
+================================================== -->
+
+<div  *ngIf="found==true;else notfound">
+
+	<div class="single-page-header" [style.backgroundImage]="'url('+imagebaseurl+gigdetail.gigimages[0]+')'" style="margin-top: -5%;">
+  
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="single-page-header-inner">
+						<div class="left-side">
+							<div class="header-image"><img [src]="imagebaseurl1+gigdetail.sellerprofileImage" alt=""></div>
+							<div class="header-details">
+								<h3>{{gigdetail.sellername}}</h3>
+								<h5>{{gigdetail.gig.title}}</h5>
+							
+							</div>
+						</div>
+						<div class="right-side">
+							<div class="salary-box">
+								<div class="salary-type">Annual Salary</div>
+								<div class="salary-amount">$ {{gigdetail.basicpackage.price}} - $ {{gigdetail.premiumpackage.price}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Page Content
+	================================================== -->
+	<div class="container">
+		<div class="row">
+			
+			<!-- Content -->
+		<!-- <div class="col-xl-8 col-lg-8 content-right-offset">
+	
+	
+	
+	
+	
+			</div> -->
+			<div class="col-xl-8 col-lg-8 content-right-offset">
+		  <ng-image-slider #nav [images]="imageObject" [infinite]="true" 
+		  [imageSize]="{width: '100%', height: 500}" slideImage="1"></ng-image-slider>
+		  
+				<div class="single-page-section">
+					<h3 class="margin-bottom-25">Gig Description</h3>
+					<p>{{gigdetail.gigDescription.description}}.</p>
+	
+					
+		  </div>
+	
+			</div>
+			
+	
+			<!-- Sidebar -->
+			<div class="col-xl-4 col-lg-4">
+				<div class="sidebar-container">
+					   
+				
+					
+					<!-- Sidebar Widget -->
+					<div class="sidebar-widget">
+						<div class="job-overview">
+							<div class="">
+								<div class="row">
+									
+									<!-- <div class="col-md-4 col-lg-4 col-xl-4"  (click)="DisplayBasicpkg()"   [ngClass]="{'green' : toggle, 'red': !toggle}">
+										
+										  <h5>Basic</h5>
+									</div>
+									<div class="col-md-4 col-lg-4 col-xl-4"  (click)="DisplayStnrdpkg()"  [ngClass]="{'green' : toggle, 'red': !toggle}">
+									
+									 <h5 style="float: left;">Standard</h5>
+								 </div>
+								 <div class="col-md-4 col-lg-4 col-xl-4"  (click)="DisplayPremiumpkg()"  [ngClass]="{'green' : toggle, 'red': !toggle}">
+									  
+									  <h5>Premium</h5>
+								 </div> -->
+
+								 <div class="container">
+									<ul class="list-group list-group-horizontal" >
+									  <li class="list-group-item"  (click)="DisplayBasicpkg()"   [ngClass]="{'Basicclick' : Basictoggle, 'Basicunclick': !Basictoggle}" style="padding:3% 8.5% 0%;">Basic</li>
+									  <li class="list-group-item"  (click)="DisplayStnrdpkg()"  [ngClass]="{'standrdClicked' : Standrdtoggle, 'Standredunclicked': !Standrdtoggle}"  style="padding:3% 8.5% 3%;" >Standard</li>
+									  <li class="list-group-item"  (click)="DisplayPremiumpkg()"  [ngClass]="{'premclicked' : premtoggle, 'premunclicked': !premtoggle}"   style="padding:3% 9% 3%;">Premium</li>
+						
+									</ul>
+								  </div>
+								 </div>
+							</div>
+							<div class="job-overview-inner">
+								<div *ngIf="basicpackageDisplay">
+									<div class="row" style="margin-top: -10%;
+									font-size: 7px;
+									font-weight: bold;">
+										<div class="col-md-6 col-lg-6 col-xl-6">
+										   <p>{{gigdetail.basicpackage.packageName}}</p>
+										</div>
+										<div class="col-md-6 col-lg-6 col-xl-6">
+										   <p style="float: right;margin-right: 5px;">Rs {{gigdetail.basicpackage.price}}</p>
+									   </div>
+								   </div>
+								   <div class="row">
+									   <div class="col">
+										  <p  style="text-align: justify;">{{gigdetail.basicpackage.description}}</p>
+									   </div>
+									   
+								  </div>
+								  <div class="row">
+								   <div class="col">
+									  <p  style="font-weight: bold;"><i class="icon-material-outline-alarm"></i>{{gigdetail.basicpackage.deliveryTime}} Delivery </p>
+								   </div>
+								   
+							  </div>
+							  <div class="row">
+							   <div class="col-xl-12">
+								  <p   style="font-weight: bold;"><i style="color: green;font-size: 20px;" class="icon-material-outline-check"></i> {{gigdetail.basicpackage.deliveryTime}}</p>
+							   </div>
+							   
+						  </div>
+						  <div class="row">
+						   <div class="col-lg-12">
+							 <button class="button button-sliding-icon ripple-effect" (click)="Checkout(gigdetail.basicpackage)" style="text-align: center;width:270px;">Place Order ({{gigdetail.basicpackage.price}})</button>
+						   </div>
+						   
+					  </div>
+								</div>
+								<div *ngIf="StanderedpackageDisplay">
+									<div class="row" style="margin-top: -10%;
+									font-size: 7px;
+									font-weight: bold;">
+										<div class="col-md-8 col-lg-8 col-xl-8">
+										   <p>{{gigdetail.gigstandardpackage.packageName}}</p>
+										</div>
+										<div class="col-md-4 col-lg-4 col-xl-4">
+										   <p style="float: right;margin-right: 5px;">Rs {{gigdetail.gigstandardpackage.price}}</p>
+									   </div>
+								   </div>
+								   <div class="row">
+									   <div class="col" >
+										  <p  style="text-align: justify;">{{gigdetail.gigstandardpackage.description}}</p>
+									   </div>
+									   
+								  </div>
+								  <div class="row">
+								   <div class="col">
+									  <p style="font-weight: bold;"> <i style="color: green;font-size: 20px;" class="icon-material-outline-alarm"></i>{{gigdetail.gigstandardpackage.deliveryTime}} </p>
+								   </div>
+								   
+							  </div>
+							  <div class="row">
+							   <div class="col-xl-12">
+								  <p style="font-weight: bold;"> <i style="color: green;font-size: 20px;" class="icon-material-outline-check"></i>{{gigdetail.gigstandardpackage.deliveryTime}}</p>
+							   </div>
+							   
+						  </div>
+						  <div class="row">
+						   <div class="col-lg-12">
+							 <button class="button button-sliding-icon ripple-effect"(click)="Checkout(gigdetail.gigstandardpackage)"   style="text-align: center;width:270px;">Place Order ({{gigdetail.gigstandardpackage.price}})</button>
+						   </div>
+						   
+					  </div>
+								</div>
+								<div *ngIf="PrimpackageDisplay">
+									<div class="row" style="margin-top: -10%;
+									font-size: 7px;
+									font-weight: bold;">
+										<div class="col-md-8 col-lg-8 col-xl-8">
+										   <p>{{gigdetail.premiumpackage.packageName}}</p>
+										</div>
+										<div class="col-md-4 col-lg-4 col-xl-4">
+										   <p style="float: right;margin-right: 5px;">Rs {{gigdetail.premiumpackage.price}}</p>
+									   </div>
+								   </div>
+								   <div class="row">
+									   <div class="col">
+										  <p  style="text-align: justify;">{{gigdetail.premiumpackage.description}}</p>
+									   </div>
+									   
+								  </div>
+								  <div class="row">
+								   <div class="col">
+									  <p style="font-weight: bold;"> <i style="color: green;font-size: 20px;" class="icon-material-outline-check"></i> {{gigdetail.premiumpackage.deliveryTime}} </p>
+								   </div>
+								   
+							  </div>
+							  <div class="row">
+							   <div class="col-xl-12">
+								  <p style="font-weight: bold;"> <i style="color: green;font-size: 20px;" class="icon-material-outline-check"></i> {{gigdetail.premiumpackage.deliveryTime}}</p>
+							   </div>
+							   
+						  </div>
+						  <div class="row">
+						   <div class="col-lg-12">
+							 <button class="button button-sliding-icon ripple-effect" (click)="Checkout(gigdetail.premiumpackage)"  style="text-align: center;width:270px;">Place Order ({{gigdetail.premiumpackage.price}})</button>
+						   </div>
+						   
+					  </div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+	
+				
+	
+				</div>
+			</div>
+	
+		</div>
+	</div>
+</div>
+
+ <!-- Container -->
+ <ng-template #notfound>
+	<div class="container">
+  
+	  <div class="row">
+		<div class="col-xl-12">
+	
+		  <section id="not-found" class="center margin-top-50 margin-bottom-25">
+			<h2>404 <i class="icon-line-awesome-question-circle"></i></h2>
+			<p>We're sorry, but the Result you were looking for doesn't exist</p>
+		  </section>
+	
+		 
+	
+		</div>
+	  </div>
+	
+	</div>
+   </ng-template>

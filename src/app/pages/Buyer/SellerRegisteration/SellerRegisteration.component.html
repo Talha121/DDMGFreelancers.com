@@ -1,0 +1,599 @@
+
+
+  <div class="section padding-top-65 padding-bottom-65" style="margin-top: 40px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup" label="first">
+              <ng-template matStepLabel>Personal Info</ng-template>
+              <form [formGroup]="SellerPersonalInfo">
+              
+       
+           
+            
+              
+              
+
+
+                    <div class="row">
+                          <div class="col-md-8">
+                             <h2 style="font-weight: bold;">Personal Info</h2>
+                      
+                          </div>
+                          <div class="col-md-6">
+                           <p  style="color:#999;">Tell us a bit about yourself. This information will appear on your public profile, so that potential buyers can get to know you better.</p>
+                          </div>
+                        
+                          <div class="col-md-12">
+                            <p style="float:right;color: lightgray;">* Mandatory fields</p>
+                           
+                           <br> <hr> 
+                          </div>
+                        
+                    </div>
+                    <br>
+                    <div class="row">
+                      <input  class="form"formControlName="FullName" placeholder="Frist Name" type="hidden">
+                      <div class="col-md-4">
+                         <label class="myDIV">Full Name<sup style="color:red;font-size:15px">*</sup></label>
+                         <div class="hide">Ex .Jhon Be</div>
+                        </div>
+                      <div class="col-md-4">
+
+                      <input type="text" class="form" formControlName="Firstname" placeholder="Frist Name">
+                      </div>
+                      <div class="col-md-4">
+                        <input type="text" placeholder="Last Name" formControlName="LastName">
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-4">
+                         <label  class="myDIV">Profile Picture <sup style="color:red;font-size:15px">*</sup></label>
+                         <div class="hide">Add a profile picture of yourself so customers will know exactly who they’ll be working with.</div>
+                      </div>
+                      <div class="col-md-4" *ngIf="imageuploaded==null;else imgg">
+                        <img src="assets/images/user-avatar-big-01.jpg" alt="" style="border-radius: 50%;" (click)="selectFile.click()">
+
+                        <input type="file" (change)="getImage($event)" style="display: none" #selectFile>
+                    <!-- <img src="assets/images/user-avatar-big-01.jpg" style="border-radius: 50%;">
+                    <input #imageInput
+                    type="file"
+                    accept="image/*"
+                    (change)="processFile(imageInput)"/> -->
+
+  
+                      </div>
+                      <ng-template #imgg>
+                        <div class="col-md-4" >
+                          <img [src]="imagebaseurl1+imageuploaded" alt="" style="border-radius: 50%;" (click)="selectFile.click()">
+  
+                          <input type="file" (change)="getImage($event)" style="display: none" #selectFile>
+                      <!-- <img src="assets/images/user-avatar-big-01.jpg" style="border-radius: 50%;">
+                      <input #imageInput
+                      type="file"
+                      accept="image/*"
+                      (change)="processFile(imageInput)"/> -->
+  
+    
+                        </div>
+                      </ng-template>
+                     
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-4">
+                         <label>Description <sup style="color:red;font-size:15px">*</sup></label>
+                      </div>
+                      <div class="col-md-8">
+               <textarea type="text" class="form-control"formControlName="Description" ></textarea>
+                      </div>
+                     
+                    </div>
+                    <br>
+                    <br>
+  
+                    <div class="row" >
+                      <div class="col-md-4">
+                         <label  class="myDIV">Languages <sup style="color:red;font-size:15px">*</sup></label>
+                       
+                          <div class="hide">Select which languages you can communicate in and your proficiency level.
+                          </div>
+                       
+                      </div>
+                         
+                      <div class="col-md-8" style="margin-top: 10px;">
+                        <div class="row" style="border: solid 1px ;padding-top: 10px;border-color: grey;" *ngIf="DisplayLanguageInput">
+                      
+                          <div class="col-md-5">
+                            <input type="text" placeholder="Language" class="form-control" #Language>
+                          </div>
+                          <div class="col-md-4">
+              
+                              <select #select>
+                            <option value="Basic">Basic</option>
+                              <option value="Freelance">Freelance</option>
+                              <option value="Intermediate">Intermediate</option>
+                              <option value="Conversational">Conversational</option>
+                              <option value="Fluent">Fluent</option>
+                            </select>
+                          </div>
+                          <div class="col-md-1">
+                            <button  class="btn btn-danger" style="padding: 5px;
+                            margin-left: -22px;" (click)="DisplayLanguage()">Cancle</button>
+                              
+                          </div>
+                          <div class="col-md-1">
+                            <button (click)="savelanguage()" class="btn btn-success" style="    margin-left: 7px;
+                            padding: 5px;
+                        ">Save</button>
+                          </div>
+                      
+                        
+                           
+                         
+                        </div>
+                       <div class="row" style="margin-top: 10px;">
+                        <table class="table table-condensed" style="border: solid 1px;border-color:#f4f4f4;">
+                         
+                          <thead style="background-color: #f4f4f4;">
+                            <tr>
+                              <th>Language </th>
+                              <th>Level</th>
+                              
+                              <th style="color:green" (click)="DisplayLanguage()">Add New <i class=">icon-feather-plus"></i> </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Urdu (اردو)</td>
+                              <td>Native/Bilingual</td>
+                                </tr>
+                            <tr>
+                              <td>Urdu (اردو)</td>
+                              <td>Native/Bilingual</td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                       </div>
+                        <br>
+                       
+                      </div>
+                     
+                    </div>
+              
+              <div>
+  
+                <button mat-button  style="float: right;" class="btn btn-success" (click)="SaveInfo()" >Continous</button>
+              </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <ng-template matStepLabel>Professional Info</ng-template>
+              <form [formGroup]="secondFormGroup">
+                <div class="row">
+                  <div class="col-md-12">
+                     <h2 style="font-weight: bold;">Professional Info</h2>
+                     
+                  </div>
+                  <div class="col-md-8">
+                   <p style="color:#999;">This is your time to shine. Let potential buyers know what you do best and how you gained your skills, certifications and experience.</p>
+                  </div>
+                  <div class="col-md-12">
+                    <p style="float:right;color: lightgray;">* Mandatory fields</p>
+                       <br>    
+                    <hr> 
+                  </div>
+                
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                 <label>Your Occupation <sup style="color:red;font-size:15px">*</sup></label>
+              </div>
+              <div class="col-md-4"  >
+              <select class="form-control" #select 
+              (change)="findcategory(select.value)">
+                   <option   [value]="item.categorey.categoreyId"*ngFor="let item of categoriesList"  >{{item.categorey.categoreyName}}</option>
+                
+              </select>
+              </div>
+              <div class="col-md-4">
+                
+                <div class="row">
+                     <div class="col-md-6">
+                       
+                      <input type="date" class="form-control" #from   />
+                     </div>
+                     <div class="col-md-6">
+                      <input type="date" class="form-control" #to  />
+                    </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          
+            <div class="row">
+                     <div class="col-md-4">
+  
+                     </div>
+                     <div class="col-md-8">
+                       <p>Choose <span style="font-weight: bold;">two to five</span>  of your best skills in Digital Marketing</p>
+                          <div class="row">
+                            <div class="col-md-5" *ngFor="let item of SubcategoriesList">
+                              <ul>
+          
+                                <li>
+                                   <label class="container1" >{{item.subcategoreyName}} 
+                                     <input type="checkbox"  [value]="item.subCategoreyId" (change)="onCheckboxChange($event,item.subCategoreyId)" >
+                                     <span class="checkmark"></span>
+                                   </label>
+                                </li>
+                                </ul>
+                            </div>
+                          
+                           
+                          
+                          
+                          </div>
+                    </div>
+            
+            </div>
+            <br>
+            
+            
+            <div class="row">
+              <div class="col-md-4">
+                <p>Skills  <sup style="color:red;font-size:15px">*</sup></p>
+              </div>
+                       
+              <div class="col-md-8" style="margin-top: 10px;">
+                <div class="row" style="border: solid 1px ;padding: 10px;border-color: grey;" *ngIf="DisplaySkillinput">
+              
+                  <div class="col-md-5">
+                    <input type="text " #skillname placeholder="Skill Name" class="form-control" >
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <select class="form-control" #skilllevel
+                   >
+                         <option    [value]="item.experienceLevelId"*ngFor="let item of ExperienceLevels"  >{{item.experienceName}}</option>
+                      
+                    </select>
+                   
+                  </div>
+                  <div class="col-md-1">
+                    <button  class="btn btn-danger" style="padding: 5px;
+                    margin-left: -22px;" (click)="DisplaySkills()">Cancle</button>
+                      
+                  </div>
+                  <div class="col-md-1">
+                    <button (click)="Saveskill()" class="btn btn-success" style="    margin-left: 7px;
+                    padding: 5px;
+                ">Add</button>
+                  </div>
+              
+                
+                   
+                 
+                </div>
+               <div class="row" style="margin-top: 10px;">
+                <table class="table table-condensed" style="border: solid 1px;border-color:#f4f4f4;">
+                 
+                  <thead style="background-color: #f4f4f4;">
+                    <tr>
+                      <th>Skill </th>
+                      <th>Level</th>
+                      
+                      <th style="color:green" (click)="DisplaySkills()">Add New <i class=">icon-feather-plus"></i> </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of Sellerskills">
+                      <td>{{item.SkillName}}</td>
+                      <td>{{item.ExperienceLevelId}}</td>
+                       </tr>
+                  
+                  </tbody>
+                </table>
+               </div>
+                <br>
+               
+              </div>
+           
+     </div>
+     <br>
+     <div class="row">
+      <div class="col-md-4">
+        <p>Education  <sup style="color:red;font-size:15px">*</sup></p>
+      </div>
+      <div class="col-md-8" style="margin-top: 10px;">
+        <div class="row" style="border: solid 1px ;padding-top: 10px;border-color: grey;" *ngIf="DisplayEducationinput">
+          <div class="row" style="padding-left: 10px;">
+            <div class="col-md-6">
+              <input type="text " #degreename placeholder="Degree Name" class="form-control" >
+            </div>
+            <div class="col-md-6">
+              <input type="text " #Country placeholder="Country" class="form-control" >
+            </div>
+          </div>
+        
+          <br>
+          <div class="row" style="padding: 10px;">
+            <div class="col-md-6">
+              <input type="text " #Institute placeholder="Institute" class="form-control" >
+            </div>
+            <div class="col-md-6">
+              <input type="text " #Major placeholder="Major" class="form-control" >
+            </div>
+          </div>
+        <br>
+        <div class="row" style="padding: 10px;">
+          <div class="col-md-6">
+            <input  type="month" #degreeyear class="form-control">
+            
+           </div>
+           <div class="col-md-3">
+             <button  class="btn btn-danger" (click)="DisplayEducation()">Cancle</button>
+               
+           </div>
+           <div class="col-md-3">
+             <button (click)="SaveEducation()" class="btn btn-success" >Add</button>
+           </div>
+        </div>
+        
+      
+        
+           
+         
+        </div>
+       <div class="row" style="margin-top: 10px;">
+        <table class="table table-condensed" style="border: solid 1px;border-color:#f4f4f4;">
+         
+          <thead style="background-color: #f4f4f4;">
+            <tr>
+              <th>Degree </th>
+              <th>Passing Year</th>
+              
+              <th style="color:green" (click)="DisplayEducation()">Add New <i class=">icon-feather-plus"></i> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of SellersEducation">
+              <td>{{item.Degree}}({{item.Institute}},{{item.Country}})</td>
+              <td>{{item.Year}}</td>
+                 </tr>
+          
+          </tbody>
+        </table>
+       </div>
+        <br>
+       
+      </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <p>Certification  <sup style="color:red;font-size:15px">*</sup></p>
+    </div>
+    <div class="col-md-8" style="margin-top: 10px;">
+      <div class="row" style="border: solid 1px ;padding: 10px;border-color: grey;" *ngIf="DisplayCertificateinput">
+        <div class="row" style="padding: 10px;">
+          <div class="col-md-6">
+            <input type="text " #certificatename placeholder="Certificate Name" class="form-control" >
+          </div>
+          <div class="col-md-6">
+            <input type="text " #CertifiedFrom placeholder="Certificate From" class="form-control" >
+          </div>
+        </div>
+     <div class="row"style="padding: 10px;">
+      <div class="col-md-6">
+        <input  type="month" #certificateyear class="form-control">
+        
+       </div>
+       <div class="col-md-3">
+         <button  class="btn btn-danger"  (click)="DisplayCertificates()">Cancle</button>
+           
+       </div>
+       <div class="col-md-3">
+         <button (click)="Savecertificates()" class="btn btn-success">Add</button>
+       </div>
+     </div>
+      
+    
+      
+         
+       
+      </div>
+     <div class="row" style="margin-top: 10px;">
+      <table class="table table-condensed" style="border: solid 1px;border-color:#f4f4f4;">
+       
+        <thead style="background-color: #f4f4f4;">
+          <tr>
+            <th>Certificate </th>
+            <th>Passing Year</th>
+            
+            <th style="color:green" (click)="DisplayCertificates()">Add New <i class=">icon-feather-plus"></i> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of SellerCertificates">
+            <td>{{item.CertificateName}} ({{item.CertifiedFrom}})</td>
+            <td>{{item.Year}}</td>
+                </tr>
+        
+        </tbody>
+      </table>
+     </div>
+      <br>
+     
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <p>Website  <sup style="color:red;font-size:15px">*</sup></p>
+    </div>
+    <div class="col-md-8" style="margin-top: 10px;">
+     <input type="text" placeholder="www.example.com" #website class="form-control">
+      <br>
+     
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+          <div style="float:right;">
+            <button mat-button matStepperPrevious class="btn btn-info">Cancle</button> 
+            <button mat-button  (click)="saveprofessionalinfo()" class="btn btn-success" style="margin-left:10px;">Next</button>
+          </div>
+       
+   
+    </div>
+  
+  </div>
+           
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+              <ng-template matStepLabel>Linked Accounts</ng-template>
+              <form [formGroup]="thirdFormGroup">
+                <div class="row">
+                  <div class="col-md-12">
+                     <h1>Linked Accounts</h1>
+                     
+                  </div>
+                  <div class="col-md-12">
+                   <p>Taking the time to verify and link your accounts can upgrade your credibility and help us provide you with more business. Don’t worry, your information is and always will remain private.</p>
+                  </div>
+                  <div class="col-md-12">
+                    <hr> 
+                  </div>
+                
+                </div>
+                <div class="row">
+               <div class="col-md-12">Your Social Presence</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                          <h5><span><img src="assets/icons/icn_google.ed9cc3a.svg"></span> Google <span class="verified">✓ Verified</span></h5>
+                    </div>
+                    <div class="col-md-6">
+                     <button style="float: right;" class="button button4">Connect</button>
+                    
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                        <h5> <span> <img src="assets/icons/icn_facebook.26a5423.svg"></span> Facebook</h5>
+                  </div>
+                  <div class="col-md-6">
+                   <button style="float: right;" class="button button4">Connect</button>
+                  
+                  </div>
+              </div>   <div class="row">
+                <div class="col-md-6">
+                      <h5> <span> <img src="assets/icons/icn_twitter.3f1cafd.svg"></span> Twitter</h5>
+                </div>
+                <div class="col-md-6">
+                 <button style="float: right;" class="button button4">Connect</button>
+                
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">Your Professional Presence</div>
+               </div>
+               <br>
+               <div class="row">
+                   <div class="col-md-6">
+                         <h5>  <span> <img src="assets/icons/icn_twitter.3f1cafd.svg"></span>  Stack Overflow
+                        </h5>
+                   </div>
+                   <div class="col-md-6">
+                    <button style="float: right;" class="button button4">Connect</button>
+                   
+                   </div>
+               </div>
+               <div class="row">
+                <div class="col-md-6">
+                      <h5>  <span> <img src="assets/icons/icn_twitter.3f1cafd.svg"></span>  Github
+                     </h5>
+                </div>
+                <div class="col-md-6">
+                 <button style="float: right;" class="button button4">Connect</button>
+                
+                </div>
+            </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+          <div style="float:right;">
+            <button mat-button matStepperPrevious class="btn btn-info">Back</button> 
+            <button mat-button matStepperNext class="btn btn-success" style="margin-left:10px;">Next</button>
+          </div>
+       
+   
+    </div>
+  
+  </div>
+           
+              </form>
+            </mat-step>
+            <mat-step  [stepControl]="forthFormGroup">
+              <ng-template matStepLabel>Account Security</ng-template>
+              <div class="row"  [formGroup]="forthFormGroup">
+                <div class="col-md-12">
+                   <h1>Account Security</h1>
+                   
+                </div>
+                <div class="col-md-12">
+                 <p>Trust and safety is a big deal in our community. Please verify your email and phone number so that we can keep your account secured.</p>
+                </div>
+                <div class="col-md-12">
+                  <hr> 
+                </div>
+              
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                      <h3>Email
+                     </h3>
+                </div>
+                <div class="col-md-6">
+                 <button style="float: right;" class="button button4">Connect</button>
+                
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                    <h3>Phone Number
+                   </h3>
+  
+  <p>We'll never share your phone number</p>                </div>
+              <div class="col-md-6">
+               <button style="float: right;" class="button button4">Connect</button>
+              
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" >
+              <div style="float:right;">
+                <button mat-button matStepperPrevious class="btn btn-info">Back</button>
+                <button mat-button (click)="activateseller()" class="btn btn-danger" style="margin-left:10px;">Confirm</button>
+           
+              </div>
+           </div>
+  
+          </div>
+        
+            
+            </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+      
+      </div>
+    
+    </div>
+  </div>

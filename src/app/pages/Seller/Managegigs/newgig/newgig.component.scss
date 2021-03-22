@@ -1,0 +1,77 @@
+
+  
+  
+  .hide {
+    display: none;
+  }
+      
+  .myDIV:hover + .hide {
+    display: block;
+    color: grey;
+  }
+  .containera{
+border: 1px solid grey;
+border-radius: 1%;
+  }
+  .bold{
+    font-weight: bold;
+    font-size:15px;
+    
+  }
+  textarea:focus { 
+  border-color: red;
+  border: 1px solid;
+  
+    box-shadow: 0 0 10px #719ECE;
+}
+
+.education-tooltip{
+  background-color: #deeff0;
+  border-radius: 3px;
+  width: 250px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateX(calc(100% + 20px));
+  transform: translateX(calc(100% + 20px));
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.education-tooltip:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: -10px;
+  z-index: 16;
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-right: 10px solid #deeff0;
+}
+::ng-deep .mat-form-field {
+  font-size: 15px;
+ 
+}
+
+.hide {
+  display: none;
+}
+    
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
+.modal-content textarea.form-control {
+  max-width: 100%;
+}
+.img {
+  background: url(https://npm-assets.fiverrcdn.com/assets/@fiverr-private/gig_upcrate/gig-edit-tooltip-collection.8cd272d.png) -7px 0 no-repeat;
+  width: 232px;
+  height: 231px;
+  margin-left: -14px;
+}

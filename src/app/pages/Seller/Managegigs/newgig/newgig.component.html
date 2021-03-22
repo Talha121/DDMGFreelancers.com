@@ -1,0 +1,826 @@
+
+
+
+<div class="section padding-top-65 padding-bottom-65" style="margin-top: 40px;font-size:20px" >
+  <div class="container">
+    <div class="row">
+     
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+        <mat-horizontal-stepper [linear]="isLinear" #stepper style="background-color: honeydew;"  >
+          <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+          </div>
+          <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10" >
+            <mat-step [stepControl]="firstFormGroup" label="first">
+              <form [formGroup]="Gigcreateform">
+              
+              <ng-template matStepLabel>OverView</ng-template>
+                 <div class="containera">
+                  <div class="row" style="padding-top: 50px;">
+                 
+                    <div class="col-xl-1   col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                      
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8" (mouseover)="aboutgig=true"  (mouseout)="aboutgig=false">
+                       <div class="row">
+                          <div class="col-md-3">
+                                 <label class="bold myDIV" style="float: right;">GIG TITLE</label>
+                            
+                                </div>
+                          <div class="col-md-9">
+                             <textarea #Title style="font-weight:bold;font-size: 20px;" class="form-control" formControlName="title" (keyup)="counter()" placeholder="I Will Do Somethig  I Am Really Good At"></textarea>
+                             <p style="float: right;color:gray;">20/80 max</p>
+                          
+                            </div>
+                       </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3" *ngIf="aboutgig">
+                <div style="background-color: white;" >
+                  <div style="padding: 10px;">
+                    <h4>
+                      Describe your Gig.</h4>
+                        <p>
+                          This is your Gig title. Choose wisely, you can only use 80 characters.
+                        </p>
+                        <div class="img"></div>
+                    </div>
+                  </div>
+               
+                </div>
+                    
+                    <div class="col-md-3 colm-lg-3 col-xl-3 col-sm-3 col-xs-3" *ngIf="!aboutgig">
+                
+                    
+
+                   
+                    </div>
+                 </div>
+                 <div class="row" style="margin-top:10px">
+                  <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                      
+                  </div>
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8"  (mouseover)="gigtype=true"  (mouseout)="gigtype=false">
+                  <div class="row">
+                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                      
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <label class="bold" tyle="float: right;">CATEGORY</label>
+                      </div>
+                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <select class="form-control" #CategoreyId 
+                        (change)="findcategory(CategoreyId.value)">
+                             <option   [value]="item.categorey.categoreyId"*ngFor="let item of categoriesList"  >{{item.categorey.categoreyName}}</option>
+                          
+                        </select>
+                 
+                     </div>
+                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <select class="form-control" #SubcategoreyId 
+                      (change)="findcategory(SubcategoreyId.value)">
+                           <option   [value]="item.subCategoreyId"*ngFor="let item of SubcategoriesList"  >{{item.subcategoreyName}}</option>
+                        
+                      </select>
+                     </div>
+                  </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3" *ngIf="gigtype">
+                    <div style="background-color: white;" >
+                      <div style="padding: 10px;">
+                        <h4>
+                          Describe your Gig.</h4>
+                            <p>
+                              This is your Gig title. Choose wisely, you can only use 80 characters.
+                            </p>
+                            <div class="img"></div>
+                        </div>
+                      </div>
+                   
+                    </div>
+                 </div>
+                    <div class="col-md-3" *ngIf="!gigtype">
+                      
+                
+                 </div>
+                 <div class="row" style="margin-top:30px">
+                  <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                      
+                  </div>
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                  <div class="row">
+                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                      
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <label class="bold" tyle="float: right;">SERVICE TYPE</label>
+                      </div>
+                    
+                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                       <select class="form-control">
+                         <option>Mustard</option>
+                         <option>Ketchup</option>
+                         <option>Relish</option>
+                        </select>
+                     </div>
+                     <span style="color:green;margin-top: 10px;">Recommended</span>
+                  </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      
+                  </div>
+                
+                 </div>
+                 <div class="row" style="margin-top:10px">
+                  <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                      
+                  </div>
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                  <div class="row">
+                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                      
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <label class="bold" tyle="float: right;">SEARCH TAGS</label>
+                      </div>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                     
+                        <mat-form-field  [style.width.px]=500> 
+                          <!--this contains the list of tags-->
+                
+                          <mat-chip-list #taglist style="width: 100%;"> 
+                              <!--set the properties for the tags-->
+                
+                              <mat-chip selected color="success" style="font-size:15;font-weight: bold;"
+                                        *ngFor="let Tag of Tags" 
+                                        [selectable]="selectable"  
+                                        [removable]="removable"  
+                                        (removed)="remove(Tag)"> 
+                                  {{Tag.Tag}} 
+                                  <!--add icon with matChipRemove  
+                                         directive to remove any tag-->
+                
+                                  <mat-icon matChipRemove 
+                                            *ngIf="removable">x 
+                                </mat-icon> 
+                              </mat-chip> 
+                              <input placeholder="Add Tags" size="5" style="font-size: 20px;"
+                                     [matChipInputFor]="taglist" 
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"  
+                                     (matChipInputTokenEnd)="add($event)" /> 
+                          </mat-chip-list> 
+                      </mat-form-field> 
+                     </div>
+                    
+                  </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="education-tooltip active"><header><div class="icn-lightbulb-wrapper active"><i class="fa fa-lightbulb-o "></i></div><h6>Start Defining Your Gig</h6></header><img class="img-education-video-thumbnail"><ul><li>Create a catchy title.</li><li>Choose a category that fits your Gig.</li><li>Add meta data to help buyers find more information regarding your Gig.</li><li>Add tags to help buyers find your Gig while searching.</li></ul><footer class="policy-video">General Gig Policy</footer></div>
+                  </div>
+                
+                 </div>
+                 </div>
+                   
+                   
+              
+              <div>
+                <br>
+                <br>
+                <button mat-button matStepperNext (click)="SaveGigoverview()" style="float: right;"  class="btn btn-success" >Continous</button>
+              </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <ng-template matStepLabel>Pricing</ng-template>
+              <form [formGroup]="secondFormGroup" *ngIf="ifgigIdnull">
+                <div class="row">
+                  <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                   
+                     <h2 style="font-weight: bold;">Scope & Pricing </h2>
+                     
+                  </div>
+                  <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <span style="float: right;">
+                      <label class="switch"><input type="checkbox" checked=""><span class="switch-button"></span> <span style="margin-left: 50px;">3 Packages</span> </label>
+                   </span>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="notification notice closeable">
+                      <p>Tooltips are powered by powerful <strong>tippy.js</strong> tooltip library. More examples at <a href="https://atomiks.github.io/tippyjs/">https://atomiks.github.io/tippyjs/</a></p>
+                      <a class="close"></a>
+                    </div>
+               </div>
+                
+                
+            </div>
+          
+          <div class="row">
+           <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+           </div>
+           <div class="col-xl-10   col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+                
+                
+                 <div>
+                   <br>
+                   <br>
+                 
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                 
+                  Revisions
+                 </div>
+                </div>
+                <div class="col-md-3">
+                  
+                  <div class="row">
+                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border:solid 1px  ;padding: 10px;">
+                            BASIC
+                          </div>
+                       
+                          <div >
+                            <div class="row">
+                              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          
+                                  <textarea  placeholder="Name Of your Package" #PackageName style="width: 230px;resize:none" class="form-control"></textarea>
+                            
+                         
+                              </div>
+                             
+                            </div>
+                         
+                          
+                          </div>
+                      
+
+                          <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <textarea placeholder="Describe the detail of your package"  #Description class="form-control"style="width: 230px;resize:none"></textarea>
+                            </div>
+                          </div>
+                         <div class="row"> 
+                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <select class="form-control" style="width:230px;" #DeliveryTime >
+                              <option>Delivery Time</option>
+                              <option value="1">1 Day Delivery </option>
+                              <option  value="2">2 Day Delivery </option>
+                              <option  value="3">3 Day Delivery </option>
+                            </select>
+                         </div>
+                         </div>
+                       <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <select class="form-control" style="width:230px;"  #Revision>
+                                <option>Select</option>
+                                <option value="0">0 </option>
+                                <option value="1">1 </option>
+                                <option value="2">2  </option>
+                                <option value="3">3  </option>
+                          </select>
+                       </div>
+                       </div>
+                        
+                
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    
+                  <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border:solid 1px  ;padding: 10px;">
+                      STANDARD
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  
+                          <textarea  placeholder="Name Of your Package" #PackageName1 style="width: 230px;resize:none" class="form-control"></textarea>
+                    
+                 
+                      </div>
+                     
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  
+                          <textarea  placeholder="Description" #Description1 style="width: 230px;resize:none" class="form-control"></textarea>
+                    
+                 
+                      </div>
+                     
+                    </div>
+                    <div class="row"> 
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <select class="form-control" style="width:230px;" #DeliveryTime1 >
+                          <option>Delivery Time</option>
+                          <option value="1">1 Day Delivery </option>
+                          <option  value="2">2 Day Delivery </option>
+                          <option  value="3">3 Day Delivery </option>
+                        </select>
+                     </div>
+                     </div>
+                   <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <select class="form-control" style="width:230px;" #Revision1 >
+                        <option>Select</option>
+                        <option value="0">0 </option>
+                        <option value="1">1 </option>
+                        <option value="2">2  </option>
+                        <option value="3">3  </option>
+                      </select>
+                   </div>
+                   </div>
+            </div>
+                  
+                </div>
+                <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <div class="row" >
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border:solid 1px;padding: 10px;">
+                      PREMIUM
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  
+                          <textarea  placeholder="Name Of your Package" #PackageName2 style="width: 230px;resize:none" class="form-control"></textarea>
+                    
+                 
+                      </div>
+                     
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  
+                          <textarea  placeholder="Description" #Description2 style="width: 230px;resize:none" class="form-control"></textarea>
+                    
+                 
+                      </div>
+                     
+                    </div>
+                    <div class="row"> 
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <select class="form-control" style="width:230px;"  #DeliveryTime2>
+                              <option>Delivery Time</option>
+                              <option value="1">1 Day Delivery </option>
+                              <option  value="2">2 Day Delivery </option>
+                              <option  value="3">3 Day Delivery </option>
+                        </select>
+                     </div>
+                     </div>
+                   <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <select class="form-control" style="width:230px;" #Revision2 >
+                        <option>Select</option>
+                        <option value="0">0 </option>
+                        <option value="1">1 </option>
+                        <option value="2">2  </option>
+                        <option value="3">3  </option>
+                      </select>
+                   </div>
+                   </div>
+            </div>
+                  
+                </div>
+          </div>
+          <div class="row">
+          <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+              Source
+          </div>
+          <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3 "   style="border:solid 1px  ;">
+            <div class="checkbox">
+              <div style="margin-left: 100px;">
+                <input #ProjectFile value="0"  type="checkbox" id="chekcbox2">
+                <label for="chekcbox2"><span class="checkbox-icon"></span> </label>
+                <br>
+              </div>
+    
+            </div>
+          </div>
+          <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+            <div class="checkbox">
+              <div style="margin-left: 100px;">
+                <input  type="checkbox" #ProjectFile1  value="0" id="chekcbox3">
+                <label for="chekcbox3"><span class="checkbox-icon"></span> </label>
+                <br>
+                <br>
+              </div>
+    
+            </div>
+          </div>
+          <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+         
+            <div class="checkbox">
+              <div style="margin-left: 100px;">
+                <input #ProjectFile2  value="0"  type="checkbox" id="chekcbox0">
+                <label for="chekcbox0"><span class="checkbox-icon"></span> </label>
+                <br>
+              </div>
+    
+            </div>
+          </div>
+          </div>
+       
+            <div class="row">
+              <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+                Commercial Use
+              </div>
+              <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="border:solid 1px  ;">
+                <div class="checkbox">
+                  <div style="margin-left: 100px;">
+                    <input  type="checkbox"  id="chekcbox10">
+                    <label for="chekcbox10"><span class="checkbox-icon"></span> </label>
+                    <br>
+                    <br>
+                  </div>
+        
+                </div>
+              </div>
+              <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+                <div class="checkbox">
+                  <div style="margin-left: 100px;">
+                    <input  type="checkbox" id="chekcbox11">
+                    <label for="chekcbox11"><span class="checkbox-icon"></span> </label>
+                    <br>
+                    <br>
+                  </div>
+        
+                </div>
+              </div>
+              <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+                <div class="checkbox">
+                  <div style="margin-left: 100px;">
+                    <input  type="checkbox" id="chekcbox12">
+                    <label for="chekcbox12"><span class="checkbox-icon"></span> </label>
+                    <br>
+                  </div>
+        
+                </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+                  Price
+                </div>
+                <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="border:solid 1px  ;">
+                  <input type="number" #Price placeholder="$" class="form-control">
+                </div>
+                <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+                  <input type="number" #Price1 placeholder="$" class="form-control">
+                </div>
+                <div class="col-xl-3   col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border:solid 1px  ;">
+               <input type="number" #Price2 placeholder="$" class="form-control">
+                </div>
+                </div>
+          </div>
+          <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+          </div>
+          </div>
+       
+     
+
+  
+  <div class="row">
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <br>
+      <br>
+     
+          <div style="float:right;">
+            <button mat-button matStepperPrevious class="btn btn-info">Back</button> 
+            <button mat-button matStepperNext class="btn btn-success" (click)="Savegigpackages()" style="margin-left:10px;">Next</button>
+          </div>
+       
+   
+    </div>
+  
+  </div>
+           
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+              <ng-template matStepLabel>Description</ng-template>
+              <form [formGroup]="thirdFormGroup" *ngIf="ifgigIdnull">
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                     <h1>Description</h1>
+                     
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <p>Briefly Describe Your Gig.</p>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <textarea #gigDescription class="form-control" rows="10" placeholder="Gig Description"></textarea>
+                </div>
+                
+                </div>
+           
+                <br>
+              
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                     <h1>Frequently Asked Questions</h1>
+                     <hr>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <p>Add Questions & Answers for Your Buyers</p>
+                   <p style="color: green;font-weight: bold;" (click)="visibalFaq()">+ Add FAQ</p>
+                  </div>
+              
+         
+                    
+                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="ShowFaq">
+                        <input type="text" class="form-control" placeholder="Add A Question. i.e Do You Translate from English to Urdu">
+                         </div>
+                            <div class="col-md-12" *ngIf="ShowFaq">
+                          <textarea class="form-control" placeholder="Add an Answer ,i.e Yess I Will Translate  From English To Urdu"></textarea>
+                            </div>
+            
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"  *ngIf="ShowFaq" >
+                    <div class="row">
+                    
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <br>
+                      <div  style="float: right;">
+                        <button class="btn btn-danger"  (click)="visibalFaq()" style="margin-right: 10px;">Cancle</button>
+                        <button class="btn btn-success" >Add</button>
+                      </div>
+                   
+                    </div>
+            
+                    </div>
+                 </div>
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="ShowFaq">
+                  <hr >
+                  <br>
+                 </div>
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"   >
+                  <div class="row">
+                    <br>
+                  <div class="col-xl-6   col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div>
+                   </div>
+                 
+                  </div>
+                  <div class="col-xl-6   col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div  style="float: right;">
+                     <button class="btn btn-success"  (click)="visibalFaq()">Save And Continue</button>
+                    </div>
+                 
+                  </div>
+            
+                  </div>
+               </div>
+                
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<hr>
+</div>
+                 
+                
+                </div>
+           
+          
+  
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div style="float:right;">
+            <button mat-button matStepperPrevious class="btn btn-info">Back</button> 
+            <button mat-button matStepperNext  (click)="SaveGigDescription()" class="btn btn-success" style="margin-left:10px;">Next</button>
+  
+     
+    </div>
+  </div>
+
+
+  </div>
+           
+              </form>
+            </mat-step>
+            <mat-step  [stepControl]="forthFormGroup">
+              <ng-template matStepLabel>Requirements</ng-template>
+              <div *ngIf="ifgigIdnull" >
+                <div class="row"  [formGroup]="forthFormGroup" >
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                     <h1>Get all the information you need from buyers to get started</h1>
+                     
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <p>Add questions to help buyers provide you with exactly what you need to start working on their order.</p>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                      <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <hr>
+                    </div>
+                    <div class="col-xl-2   col-lg-2 col-md-2 col-sm-2 col-xs-2">
+  <p>YOUR QUESTIONS</p>
+                   </div>
+                   <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                     <hr>
+                   </div>
+  
+                    </div>
+                  
+                  </div>
+                
+                </div>
+                <div class="row">
+                 <p>Add Question</p>
+                 <textarea  #gigQuestion class="form-control"></textarea>
+           
+              </div>
+              <div class="row">
+                     <button  class="btn btn-success" (click)="AddQuestion()">Add</button>
+             
+            </div>
+            <ol>
+              <li *ngFor="let item of GigQuestions" >{{item.Question}}</li>
+              </ol>
+              </div>
+            
+          <div class="row">
+            <br>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+              <div style="float:right;">
+                <button mat-button matStepperPrevious class="btn btn-info">Back</button>
+                <button mat-button (click)="SaveQuestion()"  class="btn btn-success" style="margin-left:10px;">Save And Countinue</button>
+           
+              </div>
+           </div>
+  
+          </div>
+        
+            
+            </mat-step>
+            <mat-step  [stepControl]="fifthFormGroup">
+              <ng-template matStepLabel>Gallery</ng-template>
+              <div class="row"  [formGroup]="fifthFormGroup" *ngIf="ifgigIdnull">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <h1>Build Your Gig Gallery</h1>
+                   
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                 <p>Add memorable content to your gallery to set yourself apart from competitors.</p>
+              
+                 <div class="notification notice closeable">
+                  <p>Tooltips are powered by powerful <strong>tippy.js</strong> tooltip library. More examples at <a href="https://atomiks.github.io/tippyjs/">https://atomiks.github.io/tippyjs/</a></p>
+                  <a class="close"></a>
+
+</div>  
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="custom-dropzone"  [multiple]="false"  [maxFileSize]="50"  ngx-dropzone [accept]="'video/*'" (change)="onvideoSelect($event)">
+                        <ngx-dropzone-label>
+                          <p>Drag a Video<br> Or Browse</p>
+                        </ngx-dropzone-label>
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of Videos" [file]="f" [removable]="true" (removed)="onVideoRemove(f)">
+                          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-image-preview>
+                      </div>
+                    </div>
+               
+
+                  </div>
+                
+                </div>
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1>Gig Photos</h1>
+                    
+                 </div>
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p>Upload photos that describe or are related to your Gig.</p>
+               
+         </div>
+         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <div class="custom-dropzone" [multiple]="true" [maxFileSize]="50"   ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+            <ngx-dropzone-label>
+              <p>Drag a Image<br> Or Browse</p>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </div>
+         </div>
+       
+       
+
+                </div>
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1>Gig Audios</h1>
+                    
+                 </div>
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p>Upload Gig that describe or are related to your Gig.</p>
+               
+         </div>
+         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <div class="custom-dropzone" [multiple]="true"  [maxFileSize]="50"  ngx-dropzone [accept]="'audio/*'" (change)="onaudioSelect($event)">
+            <ngx-dropzone-label>
+              <p>Drag a Image<br> Or Browse</p>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of audiofiles" [file]="f" [removable]="true" (removed)="onaudioRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </div>
+         </div>
+       
+       
+
+                </div>
+
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1>Gig PDF</h1>
+                    
+                 </div>
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p>Upload Gig that describe or are related to your Gig.</p>
+               
+         </div>
+         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <div class="custom-dropzone" [multiple]="true" [maxFileSize]="50"   ngx-dropzone [accept]="'.pdf'" (change)="onpdfSelect($event)">
+            <ngx-dropzone-label>
+              <p>Drag a PDF<br> Or Browse</p>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of pdffiles" [file]="f" [removable]="true" (removed)="onpdfRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </div>
+         </div>
+       
+       
+
+                </div>
+              </div>
+            
+          <div class="row">
+            <br>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+              <div style="float:right;">
+                <button mat-button matStepperPrevious class="btn btn-info">Back</button> 
+                <button mat-button   (click)="SaveGallery()"  matStepperNext class="btn btn-success" style="margin-left:10px;">Save and Countinue</button>
+           
+              </div>
+           </div>
+  
+          </div>
+        
+            
+            </mat-step>
+            <mat-step  [stepControl]="SixFormGroup">
+              <ng-template matStepLabel>Publish</ng-template>
+              <div class="row"  [formGroup]="SixFormGroup"  *ngIf="ifgigIdnull">
+             
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <h2>Almost there...</h2>
+                                <h3>
+                                  Let's publish your Gig and get
+some buyers rolling in.
+                                </h3>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                            </div>
+                          </div>
+                  </div>
+              </div>
+            
+          <div class="row">
+            <br>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+              <div style="float:right;">
+                <button mat-button matStepperPrevious class="btn btn-info">Back</button>
+                <!-- <button mat-button (click)="stepper.reset()" class="btn btn-danger" style="margin-left:10px;">Cancle</button>
+                <button mat-button (click)="stepper.reset()" class="btn btn-success" style="margin-left:10px;">Save and Publish</button> -->
+           
+              </div>
+           </div>
+  
+          </div>
+        
+            
+            </mat-step>
+          </div>
+        
+          </mat-horizontal-stepper>
+      </div>
+    
+    </div>
+  
+  </div>
+</div>
